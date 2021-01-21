@@ -16,5 +16,12 @@
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\LibraryServices\LibraryServices.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Catalog\" />
+    <Folder Include="Views\Catalog\" />
   </ItemGroup>
 </Project>

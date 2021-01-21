@@ -1,0 +1,42 @@
+﻿@model lms.Models.Catalog.AssetIndexModel
+
+<div id="assets">
+    <h3>Library Catalog</h3>
+    <div id="assetTable">
+        <table class="table table-condensed" id="catalogIndexTable">
+            <tr>
+                <td>
+                    Image
+                </td>
+                <td>
+                    Title
+                </td>
+                <td>
+                    Author / Director
+                </td>
+                <td>
+                    Dewey Index
+                </td>
+            </tr>
+            @foreach (var asset in Model.Assets)
+            {
+                <tr class="assetRow">
+                    <td class="">
+                        <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@asset.Id">
+                            <img src="@asset.ImageUrl" class="imageCell" />
+                        </a>
+                    </td>
+                    <td>
+                        @asset.Title
+                    </td>
+                    <td>
+                        @asset.AuthorOrDirector
+                    </td>
+                    <td>
+                        @asset.DeweyIndex
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
