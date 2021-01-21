@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
-    [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(LibraryDbContext))]
+    partial class LibraryDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -267,7 +267,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int?>("LibraryCardId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TelephoneNumber")
+                    b.Property<string>("Telephone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

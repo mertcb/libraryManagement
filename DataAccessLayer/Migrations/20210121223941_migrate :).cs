@@ -3,22 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class addedinitialentitymodels : Migration
+    public partial class migrate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "HomeLibraryBranchId",
-                table: "Students",
-                type: "int",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "LibraryCardId",
-                table: "Students",
-                type: "int",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "LibraryBranches",
                 columns: table => new
@@ -83,6 +71,37 @@ namespace DataAccessLayer.Migrations
                         name: "FK_BranchHours_LibraryBranches_BranchId",
                         column: x => x.BranchId,
                         principalTable: "LibraryBranches",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LibraryCardId = table.Column<int>(type: "int", nullable: true),
+                    HomeLibraryBranchId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_LibraryBranches_HomeLibraryBranchId",
+                        column: x => x.HomeLibraryBranchId,
+                        principalTable: "LibraryBranches",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Students_LibraryCards_LibraryCardId",
+                        column: x => x.LibraryCardId,
+                        principalTable: "LibraryCards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -207,16 +226,6 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_HomeLibraryBranchId",
-                table: "Students",
-                column: "HomeLibraryBranchId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_LibraryCardId",
-                table: "Students",
-                column: "LibraryCardId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BranchHours_BranchId",
                 table: "BranchHours",
                 column: "BranchId");
@@ -261,33 +270,19 @@ namespace DataAccessLayer.Migrations
                 table: "LibraryAssets",
                 column: "StatusId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Students_LibraryBranches_HomeLibraryBranchId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_HomeLibraryBranchId",
                 table: "Students",
-                column: "HomeLibraryBranchId",
-                principalTable: "LibraryBranches",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                column: "HomeLibraryBranchId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Students_LibraryCards_LibraryCardId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_LibraryCardId",
                 table: "Students",
-                column: "LibraryCardId",
-                principalTable: "LibraryCards",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                column: "LibraryCardId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Students_LibraryBranches_HomeLibraryBranchId",
-                table: "Students");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Students_LibraryCards_LibraryCardId",
-                table: "Students");
-
             migrationBuilder.DropTable(
                 name: "BranchHours");
 
@@ -301,6 +296,9 @@ namespace DataAccessLayer.Migrations
                 name: "Holds");
 
             migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
                 name: "LibraryAssets");
 
             migrationBuilder.DropTable(
@@ -311,22 +309,6 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Statuses");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Students_HomeLibraryBranchId",
-                table: "Students");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Students_LibraryCardId",
-                table: "Students");
-
-            migrationBuilder.DropColumn(
-                name: "HomeLibraryBranchId",
-                table: "Students");
-
-            migrationBuilder.DropColumn(
-                name: "LibraryCardId",
-                table: "Students");
         }
     }
 }

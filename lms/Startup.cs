@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using LibraryServices;
+using lms.DataAccessLayer;
 
 namespace lms
 {
@@ -27,10 +23,17 @@ namespace lms
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<LibraryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LibraryConnection")));
             services.AddSingleton(Configuration);
-            services.AddScoped<ILibraryAsset, LibraryAssetService>();
-            services.AddScoped<ICheckout, CheckoutService>();
+            services.AddScoped<ILibraryCardService, LibraryCardService>();
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ICheckoutService, CheckoutService>();
+            services.AddScoped<ILibraryAssetService, LibraryAssetService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IVideoService, VideoService>();
+            services.AddScoped<IStatusService, StatusService>();
+
+            services.AddDbContext<LibraryDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("LibraryConnection")));
 
         }
 

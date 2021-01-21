@@ -1,0 +1,32 @@
+﻿@model lms.Models.Student.StudentIndexModel
+@{
+    ViewBag.Title = "Student Index";
+}
+<h3>Patron Index</h3>
+<div id="patronIndex">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id="patronIndexTable">
+        <thead>
+            <tr>
+                <th>Profile Link</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Library Card Id</th>
+                <th>Overdue Fees</th>
+                <th>Home Library</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td id="patronIcon"><a asp-controller="Student" asp-action="Detail" asp-route-id="@student.Id">Details</a></td>
+                    <td>@student.LastName</td>
+                    <td>@student.FirstName</td>
+                    <td>@student.LibraryCardId</td>
+                    <td>@student.OverdueFees</td>
+                    <td>@student.HomeLibrary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -18,14 +18,13 @@ namespace lms.Models.Catalog
         public string CurrentLocation { get; set; }
         public string ImageUrl { get; set; }
         public string StudentName { get; set; }
-        public Checkout LatestCheckout { get; set; }
         public IEnumerable<CheckoutHistory> CheckoutHistory { get; set; }
         public IEnumerable<AssetHoldModel> CurrentHolds { get; set; }
 
         public class AssetHoldModel
         {
             public string StudentName { get; set; }
-            public DateTime HoldPlaced { get; set; } 
+            public string HoldPlaced { get; set; } 
         }
     }
 }

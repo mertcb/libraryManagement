@@ -5,7 +5,6 @@ namespace DataAccessLayer.Models
 {
     public class Checkout
     {
-        
         public int Id { get; set; }
 
         [Required]

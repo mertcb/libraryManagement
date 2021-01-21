@@ -23,5 +23,8 @@
   <ItemGroup>
     <Folder Include="Models\Catalog\" />
     <Folder Include="Views\Catalog\" />
+    <Folder Include="Models\Checkout\" />
+    <Folder Include="Views\Student\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 </Project>

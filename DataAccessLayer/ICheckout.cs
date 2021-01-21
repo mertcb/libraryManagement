@@ -10,7 +10,7 @@ namespace DataAccessLayer
         Checkout GetById(int checkoutId);
         void Add(Checkout checkout);
         void CheckOutItem(int assetId, int libraryCardId);
-        void CheckInItem(int assetId, int libraryCardId);
+        void CheckInItem(int assetId);
         IEnumerable<CheckoutHistory> GetCheckoutHistories(int id);
         Checkout GetLatestCheckout(int assetId);
         void PlaceHold(int assetId, int libraryCardId);
@@ -20,5 +20,6 @@ namespace DataAccessLayer
         string GetCurrentCheckoutStudent(int assetId);
         void MarkLost(int assetId);
         void MarkFound(int assetId);
+        bool IsCheckedOut(int id);
     }
 }

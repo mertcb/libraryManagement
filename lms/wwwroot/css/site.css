@@ -140,7 +140,7 @@ body {
 }
 
 #catalog {
-    background: url('/images/books.jpg') bottom right 15% no-repeat #555;
+    background: url('/images/books.jpg') bottom right 20% no-repeat #555;
 }
 
 #catalogIndexTable {
@@ -155,8 +155,8 @@ body {
         background-color: #eee;
     }
 
-#patrons {
-    background: url('/images/patron.jpeg') bottom left 15% no-repeat #555;
+#students {
+    background: url('/images/student.jpeg') bottom left 15% no-repeat #555;
 }
 
 .branchInfo {

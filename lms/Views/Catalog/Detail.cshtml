@@ -61,3 +61,41 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h4>Checkout History</h4>
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <th>Date Loaned</th>
+                <th>Date Returned</th>
+                <th>Card Id</th>
+            </tr>
+            @foreach (var checkout in Model.CheckoutHistory)
+            {
+                <tr>
+                    <td>@checkout.CheckedOut</td>
+                    <td>@checkout.CheckedIn</td>
+                    <td>@checkout.LibraryCard.Id</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table-bordered table-hover table-condensed">
+            <h4>Current Holds</h4>
+
+            <tr>
+                <th>Hold Placed</th>
+                <th>Student</th>
+            </tr>
+            @foreach (var hold in Model.CurrentHolds)
+            {
+                <tr>
+                    <td>@hold.HoldPlaced</td>
+                    <td>@hold.StudentName</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

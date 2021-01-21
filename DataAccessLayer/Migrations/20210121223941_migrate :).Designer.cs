@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
-    [DbContext(typeof(LibraryContext))]
-    [Migration("20210120220441_added initial entity models")]
-    partial class addedinitialentitymodels
+    [DbContext(typeof(LibraryDbContext))]
+    [Migration("20210121223941_migrate :)")]
+    partial class migrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -269,7 +269,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int?>("LibraryCardId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TelephoneNumber")
+                    b.Property<string>("Telephone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
